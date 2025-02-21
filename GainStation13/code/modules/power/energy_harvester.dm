@@ -15,15 +15,16 @@
 
 	var/maximum_net_drain_percentage = 0.05
 	var/set_power_drain = 0.05
-	var/credit_conversion_rate = 0.00002
-	var/power_avaliable = 0
-	// var/obj/structure/cable/attached
+	var/credit_conversion_rate = 0.000005
+	var/power_available = 0
+	var/active = FALSE
 
 /obj/machinery/power/energy_harvester/Initialize(mapload)
 	. = ..()
 	RefreshParts()
 	if(anchored)
 		connect_to_network()
+		power_available = avail()
 
 /obj/machinery/power/energy_harvester/RefreshParts()
 	var/capacitor_rating = 0
@@ -38,17 +39,20 @@
 	credit_conversion_rate = manipulator_rating * CREDIT_CONVERSION_EFFICIENCY
 
 /obj/machinery/power/energy_harvester/process()
+	if(!active)
+		return
+
 	if(!is_operational())
 		return
 
 	if(!powernet)
 		return
 
-	power_avaliable = avail()
-	if(power_avaliable <= 0)
+	power_available = avail()
+	if(power_available <= 0)
 		return
 
-	var/power_drain = power_avaliable * set_power_drain
+	var/power_drain = power_available * set_power_drain
 	add_load(power_drain)
 	var/credits_earned = credit_conversion_rate * power_drain
 
@@ -67,12 +71,66 @@
 	if(. == SUCCESSFUL_UNFASTEN)
 		if(anchored)
 			connect_to_network()
+			power_available = avail()
+		else
+			disconnect_from_network()
+			power_available = 0
 
 /obj/machinery/power/energy_harvester/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
-	default_deconstruction_screwdriver(user, "state_open", "state_off", I)
-	return TRUE
+	if(!active)
+		default_deconstruction_screwdriver(user, "state_open", "state_off", I)
+		return TRUE
+	return FALSE
+
+/obj/machinery/power/energy_harvester/wrench_act(mob/living/user, obj/item/I)
+	if(panel_open)
+		default_unfasten_wrench(user, I)
+		return TRUE
+	
+	return FALSE
+
+/obj/machinery/power/energy_harvester/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "EnergyHarvester", name)
+		ui.open()
+
+/obj/machinery/power/energy_harvester/ui_data(mob/user)
+	var/list/data = list()
+	data["active"] = active
+
+	data["power_available"] = power_available
+	data["set_power_drain"] = set_power_drain * 100
+	data["power_drain"] = power_available * set_power_drain * active
+	data["credit_conversion_rate"] = credit_conversion_rate
+	data["maximum_drain"] = maximum_net_drain_percentage * 100
+
+	return data
+
+/obj/machinery/power/energy_harvester/ui_act(action, params)
+	if(..())
+		return
+	
+	switch(action)
+		if("power")
+			if(panel_open)
+				return
+			if(!anchored)
+				return
+			if(!powernet)
+				return
+			active = !active
+		if("drain_percentage")
+			var/target = params["target"]
+			// var/adjust = text2num(params["adjust"])
+			if(text2num(target) != null)
+				target = text2num(target)
+				. = TRUE
+			if(.)
+				set_power_drain = clamp(target, 1, maximum_net_drain_percentage * 100)
+				set_power_drain /= 100
 
 /obj/item/circuitboard/machine/energy_harvester
 	name = "Energy Harvester (Machine Board)"
