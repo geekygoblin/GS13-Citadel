@@ -19,7 +19,7 @@
 	var/power_available = 0
 	var/active = FALSE
 
-/obj/machinery/power/energy_harvester/Initialize(mapload)
+/obj/machinery/power/energy_harvester/Initialize(mapload) // TODO: make sure we can only place 4 of those
 	. = ..()
 	RefreshParts()
 	if(anchored)
@@ -122,6 +122,7 @@
 			if(!powernet)
 				return
 			active = !active
+			. = TRUE
 		if("drain_percentage")
 			var/target = params["target"]
 			// var/adjust = text2num(params["adjust"])
