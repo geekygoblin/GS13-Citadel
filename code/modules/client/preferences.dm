@@ -328,6 +328,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		wl_rate = 0.5
 	if(isnull(stuckage))
 		stuckage = 0
+	if (stuckage_chance == null)
+		stuckage_chance = 0
 	if(isnull(max_weight))
 		max_weight = 0
 	if(isnull(chair_breakage))
@@ -810,6 +812,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 								dat += "<b>Color:</b></a><BR>"
 								dat += "<span style='border: 1px solid #161616; background-color: #[features["breasts_color"]];'><font color='[color_hex2num(features["breasts_color"]) < 200 ? "FFFFFF" : "000000"]'>#[features["breasts_color"]]</font></span> <a href='?_src_=prefs;preference=breasts_color;task=input'>Change</a><br>"
 							dat += "<b>Cup Size:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=breasts_size;task=input'>[features["breasts_size"]]</a>"
+							dat += "<b>Max Fat Breast Size:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=max_breasts_size;task=input'>[features["max_breasts_size"]]</a>" //GS13 Edit
 							dat += "<b>Breasts Shape:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=breasts_shape;task=input'>[features["breasts_shape"]]</a>"
 							dat += "<b>Breasts Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=breasts_visibility;task=input'>[features["breasts_visibility"]]</a>"
 							dat += "<b>Lactates:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=breasts_producing'>[features["breasts_producing"] == TRUE ? "Yes" : "No"]</a>"
@@ -846,6 +849,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 								dat += "<b>Color:</b></a><BR>"
 								dat += "<span style='border: 1px solid #161616; background-color: #[features["butt_color"]];'><font color='[color_hex2num(features["butt_color"]) < 200 ? "FFFFFF" : "000000"]'>#[features["butt_color"]]</font></span> <a href='?_src_=prefs;preference=butt_color;task=input'>Change</a><br>"
 							dat += "<b>Butt Size:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=butt_size;task=input'>[features["butt_size"]]</a>"
+							dat += "<b>Max Fat Butt Size:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=max_butt_size;task=input'>[features["max_butt_size"]]</a>"  //GS13 Edit
 							dat += "<b>Butt Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=butt_visibility;task=input'>[features["butt_visibility"]]</a>"
 						dat += "</td>"
 					dat += "</td>"
@@ -860,6 +864,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						else
 							dat += "<span style='border: 1px solid #161616; background-color: #[features["belly_color"]];'><font color='[color_hex2num(features["belly_color"]) < 200 ? "FFFFFF" : "000000"]'>#[features["belly_color"]]</font></span> <a href='?_src_=prefs;preference=belly_color;task=input'>Change</a><br>"
 						dat += "<b>Belly Size:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=belly_size;task=input'>[features["belly_size"]]</a>"
+						dat += "<b>Max Fat Belly Size:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=max_belly_size;task=input'>[features["max_belly_size"]]</a>"
 						dat += "<b>Belly Shape:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=belly_shape;task=input'>[features["belly_shape"]]</a>"
 						dat += "<b>Belly Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=belly_visibility;task=input'>[features["belly_visibility"]]</a>"
 						// GS13: tweak inflation description
@@ -1402,6 +1407,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "<b>Show that you want to be confronted:</b><a href='?_src_=prefs;preference=trouble_seeker'>[trouble_seeker == TRUE ? "Enabled" : "Disabled"]</a><BR>"
 					dat += "<b>Bot Feeding:</b><a href='?_src_=prefs;preference=bot_feeding'>[bot_feeding == TRUE ? "Enabled" : "Disabled"]</a><BR>"
 					dat += "<b>Blueberry Inflation:</b><a href='?_src_=prefs;preference=blueberry_inflation'>[blueberry_inflation == TRUE ? "Enabled" : "Disabled"]</a><BR>"
+					dat += "<b>Hear Burping Noises:</b> <a href='?_src_=prefs;preference=burping_noises'>[(cit_toggles & BURPING_NOISES) ? "Allowed" : "Disallowed"]</a><br>"
+					dat += "<b>Hear Farting Noises:</b> <a href='?_src_=prefs;preference=farting_noises'>[(cit_toggles & FARTING_NOISES) ? "Allowed" : "Disallowed"]</a><br>"
 
 					dat += "<h2>Weight Gain Types</h2>"
 					dat += "<b>Food:</b><a href='?_src_=prefs;preference=weight_gain_food'>[weight_gain_food == TRUE ? "Enabled" : "Disabled"]</a><BR>"
@@ -1417,6 +1424,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat +="<td width='300px' height='300px' valign='top'>"
 					dat += "<h2>GS13 Gameplay Preferences</h2>"
 					dat += "<b>Stuckage (at what weight will you get stuck in doors?):</b><a href='?_src_=prefs;preference=stuckage'>[stuckage == FALSE ? "Disabled" : stuckage]</a><BR>"
+					if(stuckage)
+						dat += "<b>Stuckage Chance :</b> <a href='?_src_=prefs;preference=stuckage_chance;task=input'>[stuckage_chance]</a><br>"
 					dat += "<b>Chair Breakage (at what weight will you break chairs?):</b><a href='?_src_=prefs;preference=chair_breakage'>[chair_breakage == FALSE ? "Disabled" : chair_breakage]</a><BR>"
 					dat += "<br></br>"
 					dat += "This preference will allow items that work based on weight to work to you, <b>usually to your detriment.</b> <BR>"
@@ -2698,6 +2707,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_size = input(user, "Breast Size", "Character Preference") as null|anything in CONFIG_GET(keyed_list/breasts_cups_prefs)
 					if(new_size)
 						features["breasts_size"] = new_size
+				 //GS13 Edit
+				if("max_breasts_size")
+					var/new_max = input(user, "Max fat breasts size:\n([0]-[30])", "Character Preference") as num|null
+					if(new_max)
+						features["max_breasts_size"] = clamp(round(new_max), 0, 30)
 
 				if("breasts_shape")
 					var/new_shape
@@ -2783,6 +2797,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_length = input(user, "Butt size:\n([min_B]-[max_B])", "Character Preference") as num|null
 					if(new_length)
 						features["butt_size"] = clamp(round(new_length), min_B, max_B)
+				//GS13 Edit
+				if("max_butt_size")
+					var/new_max = input(user, "Max fat butt size:\n([0]-[10])", "Character Preference") as num|null
+					if(new_max)
+						features["max_butt_size"] = clamp(round(new_max), 0, 10)
 
 				if("butt_visibility")
 					var/n_vis = input(user, "Butt Visibility", "Character Preference") as null|anything in CONFIG_GET(str_list/safe_visibility_toggles)
@@ -2805,6 +2824,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_bellysize = input(user, "Belly size :\n(1-10)", "Character Preference") as num|null
 					if(new_bellysize)
 						features["belly_size"] = clamp(round(new_bellysize), 1, 10)
+
+				if("max_belly_size")
+					var/new_bellymax = input(user, "Max belly fat size :\n(0-9)", "Character Preference") as num|null
+					if(new_bellymax)
+						features["max_belly_size"] = clamp(round(new_bellymax), 0, 10)
 
 				if("belly_shape") //GS13 - belly shapes
 					var/new_shape
@@ -3001,6 +3025,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_wl_rate = input(user, "Choose your weight loss rate from 0.1 (10%) to 2 (200%).\n Decimals such as 0.2 indicate 20% rate.\nDefault recommended rate is 0.5 (50%)", "Character Preference", wl_rate) as num|null
 					if (new_wl_rate)
 						wl_rate = max(min(round(text2num(new_wl_rate),0.01),2),0)
+				
+				if("stuckage_chance")
+					var/new_stuckage_chance = input(user, "Choose your chance to get stuck in doors from 0.1 (10%) to 1 (100%).\nDecimals such as 0.2 indicate 20% chance.\nSetting this to 0 restores default values.", "Character Preference", stuckage_chance) as num|null
+					if(new_stuckage_chance)
+						stuckage_chance = clamp(new_stuckage_chance, 0.1, 1)
+					else
+						stuckage_chance = 0
 
 				if("marking_down")
 					// move the specified marking down
@@ -3487,6 +3518,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("blueberry_inflation")
 					blueberry_inflation = !blueberry_inflation
+				if("burping_noises")
+					cit_toggles ^= BURPING_NOISES
+				if("farting_noises")
+					cit_toggles ^= FARTING_NOISES
+
 				if("max_fatness")
 					max_weight = chose_weight("Choose your max fatness level, your weight will not go beyond this. None will let you gain without a limit", user)
 
@@ -3812,7 +3848,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/language_entry = GLOB.roundstart_languages[additional_language]
 		if(language_entry)
 			character.additional_language = language_entry
-			character.grant_language(language_entry, TRUE, TRUE)
+			character.grant_language(language_entry)
 
 	character.set_bark(bark_id)
 	character.vocal_speed = bark_speed

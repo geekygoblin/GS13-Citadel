@@ -874,6 +874,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//breasts features
 	S["feature_has_breasts"] >> features["has_breasts"]
 	S["feature_breasts_size"] >> features["breasts_size"]
+	S["feature_max_breasts_size"]	>> features["max_breasts_size"] //GS13 Edit - Max size
 	S["feature_breasts_shape"] >> features["breasts_shape"]
 	S["feature_breasts_color"] >> features["breasts_color"]
 	S["feature_breasts_producing"] >> features["breasts_producing"]
@@ -889,10 +890,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["feature_has_butt"] >> features["has_butt"]
 	S["feature_butt_color"] >> features["butt_color"]
 	S["feature_butt_size"] >> features["butt_size"]
+	S["feature_max_butt_size"]	>> features["max_butt_size"] //GS13 Edit - Max size
 	S["feature_butt_visibility"] >> features["butt_visibility"]
 	//belly features
 	S["feature_has_belly"]				>> features["has_belly"]
 	S["feature_belly_size"]				>> features["belly_size"]
+	S["feature_max_belly_size"]				>> features["max_belly_size"]
 	S["feature_belly_shape"]			>> features["belly_shape"]
 	S["feature_belly_color"]			>> features["belly_color"]
 	S["feature_hide_belly"]				>> features["hide_belly"]
@@ -949,6 +952,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["helplessness_clothing_back"] >> helplessness_clothing_back
 	S["helplessness_no_buckle"] >> helplessness_no_buckle
 	S["stuckage"] >> stuckage
+	S["stuckage_chance"] >> stuckage_chance
 	S["chair_breakage"] >> chair_breakage
 	S["fatness_vulnerable"] >> fatness_vulnerable
 	S["extreme_fatness_vulnerable"] >> extreme_fatness_vulnerable
@@ -1244,6 +1248,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["helplessness_clothing_back"], helplessness_clothing_back)
 	WRITE_FILE(S["helplessness_no_buckle"], helplessness_no_buckle)
 	WRITE_FILE(S["stuckage"], stuckage)
+	WRITE_FILE(S["stuckage_chance"], stuckage_chance)
 	WRITE_FILE(S["chair_breakage"], chair_breakage)
 	WRITE_FILE(S["fatness_vulnerable"], fatness_vulnerable)
 	WRITE_FILE(S["extreme_fatness_vulnerable"], extreme_fatness_vulnerable)
@@ -1291,6 +1296,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	WRITE_FILE(S["feature_has_breasts"], features["has_breasts"])
 	WRITE_FILE(S["feature_breasts_size"], features["breasts_size"])
+	WRITE_FILE(S["feature_max_breasts_size"], features["max_breasts_size"]) //GS13 Edit - Max size
 	WRITE_FILE(S["feature_breasts_shape"], features["breasts_shape"])
 	WRITE_FILE(S["feature_breasts_color"], features["breasts_color"])
 	WRITE_FILE(S["feature_breasts_producing"], features["breasts_producing"])
@@ -1306,10 +1312,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_has_butt"], features["has_butt"])
 	WRITE_FILE(S["feature_butt_color"], features["butt_color"])
 	WRITE_FILE(S["feature_butt_size"], features["butt_size"])
+	WRITE_FILE(S["feature_max_butt_size"], features["max_butt_size"]) //GS13 Edit - Max size
 	WRITE_FILE(S["feature_butt_visibility"], features["butt_visibility"])
 	//belly features
 	WRITE_FILE(S["feature_has_belly"], features["has_belly"])
 	WRITE_FILE(S["feature_belly_size"], features["belly_size"])
+	WRITE_FILE(S["feature_max_belly_size"], features["max_belly_size"])
 	WRITE_FILE(S["feature_belly_shape"], features["belly_shape"])
 	WRITE_FILE(S["feature_belly_color"], features["belly_color"])
 	WRITE_FILE(S["feature_hide_belly"], features["hide_belly"])
