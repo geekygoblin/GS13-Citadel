@@ -19,11 +19,16 @@
 	var/power_available = 0
 	var/active = FALSE
 
-/obj/machinery/power/energy_harvester/Initialize(mapload) // TODO: make sure we can only place 4 of those
+/obj/machinery/power/energy_harvester/Initialize(mapload)
 	. = ..()
 	RefreshParts()
 	if(anchored)
 		connect_to_network()
+		if(too_many_harvesters_in_network())
+			src.visible_message("<span class='alert'>[src] buzzes. Seems like there are too many energy harvesters connected to this powernet.</span>")
+			playsound(src, 'sound/machines/buzz-two.ogg', 50)
+			disconnect_from_network()
+			return
 		power_available = avail()
 
 /obj/machinery/power/energy_harvester/RefreshParts()
@@ -46,10 +51,14 @@
 		return
 
 	if(!powernet)
+		src.visible_message("<span class='alert'>[src] buzzes. Seems like it's not connected to a powernet.</span>")
+		playsound(src, 'sound/machines/buzz-two.ogg', 50)
 		return
 
 	power_available = avail()
 	if(power_available <= 0)
+		src.visible_message("<span class='alert'>[src] buzzes. Seems like there is no energy in the connected powernet.</span>")
+		playsound(src, 'sound/machines/buzz-two.ogg', 50)
 		return
 
 	var/power_drain = power_available * set_power_drain
@@ -71,6 +80,11 @@
 	if(. == SUCCESSFUL_UNFASTEN)
 		if(anchored)
 			connect_to_network()
+			if(too_many_harvesters_in_network())
+				src.visible_message("<span class='alert'>[src] buzzes. Seems like there are too many energy harvesters connected to this powernet.</span>")
+				playsound(src, 'sound/machines/buzz-two.ogg', 50)
+				disconnect_from_network()
+				return
 			power_available = avail()
 		else
 			disconnect_from_network()
@@ -79,9 +93,11 @@
 /obj/machinery/power/energy_harvester/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
+
 	if(!active)
 		default_deconstruction_screwdriver(user, "state_open", "state_off", I)
 		return TRUE
+
 	return FALSE
 
 /obj/machinery/power/energy_harvester/wrench_act(mob/living/user, obj/item/I)
@@ -89,6 +105,16 @@
 		default_unfasten_wrench(user, I)
 		return TRUE
 	
+	return FALSE
+
+/obj/machinery/power/energy_harvester/proc/too_many_harvesters_in_network()
+	var/counter = 0
+	for(var/machine in powernet.nodes)
+		if(istype(machine, /obj/machinery/power/energy_harvester))
+			counter += 1
+			if(counter > 4)
+				return TRUE
+
 	return FALSE
 
 /obj/machinery/power/energy_harvester/ui_interact(mob/user, datum/tgui/ui)
@@ -119,7 +145,9 @@
 				return
 			if(!anchored)
 				return
-			if(!powernet)
+			if(!active && !powernet)
+				src.visible_message("<span class='alert'>[src] buzzes. Seems like it's not connected to a powernet.</span>")
+				playsound(src, 'sound/machines/buzz-two.ogg', 50)
 				return
 			active = !active
 			. = TRUE
