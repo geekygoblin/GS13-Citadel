@@ -5,12 +5,12 @@
 /obj/machinery/power/energy_harvester
 	desc = "A Device which upon connection to a node, will harvest the energy and send it to engineerless stations in return for credits, derived from a syndicate powersink model. The instructions say to never use more than 4 harvesters at a time."
 	name = "Energy Harvesting Module"
-	density = FALSE
+	density = TRUE
 	use_power = NO_POWER_USE
-	// anchored = FALSE
-	icon = 'GainStation13/icons/obj/adipoelectric_transformer.dmi'
-	icon_state = "state_off"
+	icon = 'GainStation13/icons/obj/energy_harvester.dmi'			// by AlManiak
+	icon_state = "off"
 	circuit = /obj/item/circuitboard/machine/energy_harvester
+	var/datum/looping_sound/generator/soundloop
 	
 
 	var/maximum_net_drain_percentage = 0.05
@@ -21,6 +21,7 @@
 
 /obj/machinery/power/energy_harvester/Initialize(mapload)
 	. = ..()
+	soundloop = new(src, active)
 	RefreshParts()
 	if(anchored)
 		connect_to_network()
@@ -30,6 +31,10 @@
 			disconnect_from_network()
 			return
 		power_available = avail()
+
+/obj/machinery/power/energy_harvester/Destroy()
+	QDEL_NULL(soundloop)
+	return ..()
 
 /obj/machinery/power/energy_harvester/RefreshParts()
 	var/capacitor_rating = 0
@@ -95,7 +100,7 @@
 		return TRUE
 
 	if(!active)
-		default_deconstruction_screwdriver(user, "state_open", "state_off", I)
+		default_deconstruction_screwdriver(user, "open", "off", I)
 		return TRUE
 
 	return FALSE
@@ -150,6 +155,14 @@
 				playsound(src, 'sound/machines/buzz-two.ogg', 50)
 				return
 			active = !active
+			if(active)
+				icon_state = "on"
+				set_light(1, 1, "#9999FF")
+				soundloop.start()
+			else
+				icon_state = "off"
+				set_light(0)
+				soundloop.stop()
 			. = TRUE
 		if("drain_percentage")
 			var/target = params["target"]
