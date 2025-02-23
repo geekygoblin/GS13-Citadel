@@ -11,7 +11,7 @@
 	icon_state = "off"
 	circuit = /obj/item/circuitboard/machine/energy_harvester
 	var/datum/looping_sound/generator/soundloop
-	
+
 
 	var/maximum_net_drain_percentage = 0.05
 	var/set_power_drain = 0.05
@@ -24,15 +24,16 @@
 	soundloop = new(src, active)
 	RefreshParts()
 	if(anchored)
-		connect_to_network()
-		if(too_many_harvesters_in_network())
-			src.visible_message("<span class='alert'>[src] buzzes. Seems like there are too many energy harvesters connected to this powernet.</span>")
-			playsound(src, 'sound/machines/buzz-two.ogg', 50)
-			disconnect_from_network()
-			return
-		power_available = avail()
+		if(connect_to_network())
+			if(too_many_harvesters_in_network())
+				src.visible_message("<span class='alert'>[src] buzzes. Seems like there are too many energy harvesters connected to this powernet.</span>")
+				playsound(src, 'sound/machines/buzz-two.ogg', 50)
+				disconnect_from_network()
+				return
+			power_available = avail()
 
 /obj/machinery/power/energy_harvester/Destroy()
+	disconnect_from_network()
 	QDEL_NULL(soundloop)
 	return ..()
 
@@ -58,12 +59,14 @@
 	if(!powernet)
 		src.visible_message("<span class='alert'>[src] buzzes. Seems like it's not connected to a powernet.</span>")
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
+		active = FALSE
 		return
 
 	power_available = avail()
 	if(power_available <= 0)
 		src.visible_message("<span class='alert'>[src] buzzes. Seems like there is no energy in the connected powernet.</span>")
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
+		active = FALSE
 		return
 
 	var/power_drain = power_available * set_power_drain
@@ -77,20 +80,20 @@
 	var/datum/bank_account/cargo_budget = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(cargo_budget)
 		cargo_budget.adjust_money(credits_earned / 2)
-	
+
 
 
 /obj/machinery/power/energy_harvester/default_unfasten_wrench(mob/user, obj/item/I, time = 20)
 	. = ..()
 	if(. == SUCCESSFUL_UNFASTEN)
 		if(anchored)
-			connect_to_network()
-			if(too_many_harvesters_in_network())
-				src.visible_message("<span class='alert'>[src] buzzes. Seems like there are too many energy harvesters connected to this powernet.</span>")
-				playsound(src, 'sound/machines/buzz-two.ogg', 50)
-				disconnect_from_network()
-				return
-			power_available = avail()
+			if(connect_to_network())
+				if(too_many_harvesters_in_network())
+					src.visible_message("<span class='alert'>[src] buzzes. Seems like there are too many energy harvesters connected to this powernet.</span>")
+					playsound(src, 'sound/machines/buzz-two.ogg', 50)
+					disconnect_from_network()
+					return
+				power_available = avail()
 		else
 			disconnect_from_network()
 			power_available = 0
@@ -109,7 +112,7 @@
 	if(panel_open)
 		default_unfasten_wrench(user, I)
 		return TRUE
-	
+
 	return FALSE
 
 /obj/machinery/power/energy_harvester/proc/too_many_harvesters_in_network()
@@ -143,7 +146,7 @@
 /obj/machinery/power/energy_harvester/ui_act(action, params)
 	if(..())
 		return
-	
+
 	switch(action)
 		if("power")
 			if(panel_open)
