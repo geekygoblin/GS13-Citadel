@@ -177,6 +177,9 @@
 				set_light(0)
 				soundloop.stop()
 			else
+				power_available = avail()
+				if(power_available <= 0)
+					return
 				active = TRUE
 				icon_state = "on"
 				set_light(1, 1, "#9999FF")
@@ -195,6 +198,7 @@
 /obj/item/circuitboard/machine/energy_harvester
 	name = "Energy Harvester (Machine Board)"
 	build_path = /obj/machinery/power/energy_harvester
+	needs_anchored = FALSE
 	req_components = list(
 		/obj/item/stock_parts/capacitor = 4,
 		/obj/item/stock_parts/manipulator = 2)
