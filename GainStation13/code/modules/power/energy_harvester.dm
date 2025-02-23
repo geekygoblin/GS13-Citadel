@@ -121,6 +121,13 @@
 
 	return FALSE
 
+/obj/machinery/power/energy_harvester/crowbar_act(mob/living/user, obj/item/I)
+	if(panel_open)
+		default_deconstruction_crowbar(I)
+		return TRUE
+
+	return FALSE
+
 /obj/machinery/power/energy_harvester/proc/too_many_harvesters_in_network()
 	var/counter = 0
 	for(var/machine in powernet.nodes)
@@ -166,14 +173,14 @@
 
 			if(active)
 				active = FALSE
-				icon_state = "on"
-				set_light(1, 1, "#9999FF")
-				soundloop.start()
-			else
-				active = TRUE
 				icon_state = "off"
 				set_light(0)
 				soundloop.stop()
+			else
+				active = TRUE
+				icon_state = "on"
+				set_light(1, 1, "#9999FF")
+				soundloop.start()
 			. = TRUE
 
 		if("drain_percentage")
