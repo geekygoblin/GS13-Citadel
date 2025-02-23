@@ -60,6 +60,9 @@
 		src.visible_message("<span class='alert'>[src] buzzes. Seems like it's not connected to a powernet.</span>")
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
 		active = FALSE
+		icon_state = "off"
+		set_light(0)
+		soundloop.stop()
 		return
 
 	power_available = avail()
@@ -67,6 +70,9 @@
 		src.visible_message("<span class='alert'>[src] buzzes. Seems like there is no energy in the connected powernet.</span>")
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
 		active = FALSE
+		icon_state = "off"
+		set_light(0)
+		soundloop.stop()
 		return
 
 	var/power_drain = power_available * set_power_drain
@@ -157,19 +163,21 @@
 				src.visible_message("<span class='alert'>[src] buzzes. Seems like it's not connected to a powernet.</span>")
 				playsound(src, 'sound/machines/buzz-two.ogg', 50)
 				return
-			active = !active
+
 			if(active)
+				active = FALSE
 				icon_state = "on"
 				set_light(1, 1, "#9999FF")
 				soundloop.start()
 			else
+				active = TRUE
 				icon_state = "off"
 				set_light(0)
 				soundloop.stop()
 			. = TRUE
+
 		if("drain_percentage")
 			var/target = params["target"]
-			// var/adjust = text2num(params["adjust"])
 			if(text2num(target) != null)
 				target = text2num(target)
 				. = TRUE
