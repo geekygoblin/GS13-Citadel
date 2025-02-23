@@ -25,11 +25,6 @@
 	RefreshParts()
 	if(anchored)
 		if(connect_to_network())
-			if(too_many_harvesters_in_network())
-				src.visible_message("<span class='alert'>[src] buzzes. Seems like there are too many energy harvesters connected to this powernet.</span>")
-				playsound(src, 'sound/machines/buzz-two.ogg', 50)
-				disconnect_from_network()
-				return
 			power_available = avail()
 
 /obj/machinery/power/energy_harvester/Destroy()
@@ -94,11 +89,6 @@
 	if(. == SUCCESSFUL_UNFASTEN)
 		if(anchored)
 			if(connect_to_network())
-				if(too_many_harvesters_in_network())
-					src.visible_message("<span class='alert'>[src] buzzes. Seems like there are too many energy harvesters connected to this powernet.</span>")
-					playsound(src, 'sound/machines/buzz-two.ogg', 50)
-					disconnect_from_network()
-					return
 				power_available = avail()
 		else
 			disconnect_from_network()
@@ -127,6 +117,20 @@
 		return TRUE
 
 	return FALSE
+
+/obj/machinery/power/energy_harvester/connect_to_network()
+	. = ..()
+
+	if(!.)
+		return FALSE
+	
+	if(too_many_harvesters_in_network())
+		src.visible_message("<span class='alert'>[src] buzzes. Seems like there are too many energy harvesters connected to this powernet.</span>")
+		playsound(src, 'sound/machines/buzz-two.ogg', 50)
+		disconnect_from_network()
+		return FALSE
+	
+	return TRUE
 
 /obj/machinery/power/energy_harvester/proc/too_many_harvesters_in_network()
 	var/counter = 0
