@@ -42566,7 +42566,7 @@
 /turf/open/floor/plasteel,
 /area/engineering/atmos)
 "bKZ" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+/obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
 /obj/effect/spawner/structure/window/reinforced,
@@ -44227,7 +44227,7 @@
 /area/engineering/atmos)
 "bPf" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+/obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
 /obj/effect/spawner/structure/window/reinforced,
@@ -45485,7 +45485,7 @@
 "bSi" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+/obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -46422,7 +46422,7 @@
 "bUz" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/machinery/atmospherics/pipe/simple/purple/visible{
+/obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -46699,7 +46699,7 @@
 /area/engineering/atmos)
 "bVl" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+/obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
@@ -55578,6 +55578,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/cargo/qm)
+"dEo" = (
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "dGd" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible,
 /obj/machinery/meter,
@@ -58185,7 +58189,7 @@
 /area/maintenance/department/security/brig)
 "iSL" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/engineering/atmos)
 "iTE" = (
@@ -59349,6 +59353,14 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"lDN" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/engineering/atmos)
 "lDW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/stripes/corner,
@@ -90470,7 +90482,7 @@ bva
 bva
 bva
 tvP
-bDi
+dEo
 wRk
 bva
 bva
@@ -101263,7 +101275,7 @@ myn
 bVX
 bWM
 bXv
-bWc
+iSL
 tmi
 bZL
 caB
@@ -102291,7 +102303,7 @@ bVh
 bVY
 bWM
 bXy
-bWc
+iSL
 bZe
 bZL
 caE
@@ -103319,7 +103331,7 @@ bVi
 bMe
 bWP
 bXy
-bQO
+lDN
 bZe
 bZN
 caH
