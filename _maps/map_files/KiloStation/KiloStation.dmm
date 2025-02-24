@@ -19418,7 +19418,7 @@
 	dir = 8
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/turf/closed/wall,
+/turf/open/floor/plating,
 /area/engineering/atmos)
 "aHy" = (
 /obj/structure/table,
@@ -20287,7 +20287,7 @@
 	},
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/layer_manifold,
-/turf/closed/wall,
+/turf/open/floor/plating,
 /area/engineering/atmos)
 "aIP" = (
 /obj/effect/turf_decal/delivery,
@@ -20771,7 +20771,7 @@
 "aJI" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/effect/spawner/structure/window/reinforced,
-/turf/closed/wall,
+/turf/open/floor/plating,
 /area/engineering/atmos)
 "aJJ" = (
 /obj/machinery/status_display/evac,
@@ -50278,7 +50278,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/spawner/structure/window/reinforced,
-/turf/closed/wall,
+/turf/open/floor/plating,
 /area/engineering/atmos)
 "bGp" = (
 /obj/effect/turf_decal/tile/red{
@@ -51349,7 +51349,7 @@
 	dir = 4
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/turf/closed/wall,
+/turf/open/floor/plating,
 /area/engineering/atmos)
 "bIc" = (
 /obj/effect/turf_decal/delivery,
@@ -51367,7 +51367,7 @@
 	},
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/layer_manifold,
-/turf/closed/wall,
+/turf/open/floor/plating,
 /area/engineering/atmos)
 "bIf" = (
 /obj/structure/table,
@@ -59146,7 +59146,7 @@
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
-/turf/closed/wall,
+/turf/open/floor/plating,
 /area/engineering/atmos)
 "bUN" = (
 /turf/open/floor/plating/airless,
@@ -66230,6 +66230,7 @@
 	name = "Engineering External Airlock";
 	req_one_access_txt = "10;24"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel/dark,
 /area/engineering/main)
 "cgI" = (
@@ -67948,6 +67949,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel/dark,
 /area/engineering/atmos)
 "cjn" = (
@@ -72953,7 +72955,7 @@
 /turf/open/floor/engine,
 /area/engineering/gravity_generator)
 "csK" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/atmos_waste{
 	dir = 1
 	},
 /obj/machinery/light/small{
@@ -74844,7 +74846,8 @@
 /area/maintenance/port/fore)
 "cwz" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 1
+	dir = 1;
+	volume_rate = 200
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -75325,6 +75328,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/disposal)
 "cxq" = (
@@ -75483,7 +75487,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/spawner/structure/window/reinforced,
-/turf/closed/wall,
+/turf/open/floor/plating,
 /area/engineering/atmos)
 "cxU" = (
 /obj/structure/disposalpipe/segment{
@@ -83936,6 +83940,11 @@
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/airless,
 /area/hallway/secondary/entry)
+"rUJ" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "rWp" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -114955,7 +114964,7 @@ bFc
 cbd
 bGJ
 cdr
-bGG
+rUJ
 ssF
 cgF
 chz
