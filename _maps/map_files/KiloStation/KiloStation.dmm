@@ -19417,8 +19417,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
 	dir = 8
 	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/closed/wall,
 /area/engineering/atmos)
 "aHy" = (
 /obj/structure/table,
@@ -20770,8 +20769,7 @@
 /area/engineering/atmos)
 "aJI" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/closed/wall,
 /area/engineering/atmos)
 "aJJ" = (
 /obj/machinery/status_display/evac,
@@ -72592,9 +72590,6 @@
 	pixel_y = -32
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
 /turf/open/floor/plating,
 /area/engineering/atmos)
 "csg" = (
@@ -72623,6 +72618,9 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
 /turf/open/floor/plating,
 /area/engineering/atmos)
 "csj" = (
@@ -81363,6 +81361,14 @@
 	},
 /turf/open/floor/mineral/calorite,
 /area/space/nearstation)
+"edN" = (
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engineering/atmos)
 "eeU" = (
 /obj/item/kirbyplants,
 /turf/open/floor/wood,
@@ -83940,11 +83946,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/airless,
 /area/hallway/secondary/entry)
-"rUJ" = (
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/opossum/poppy,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "rWp" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -84152,6 +84153,11 @@
 	icon_state = "wood-broken4"
 	},
 /area/ruin/space/djstation)
+"sUA" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "sWL" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -112149,7 +112155,7 @@ bUM
 bUS
 cxT
 bGC
-cxT
+edN
 cBH
 cjs
 aks
@@ -114964,7 +114970,7 @@ bFc
 cbd
 bGJ
 cdr
-rUJ
+sUA
 ssF
 cgF
 chz

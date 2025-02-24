@@ -27074,9 +27074,6 @@
 	},
 /turf/open/floor/catwalk_floor,
 /area/maintenance/port/aft)
-"cgJ" = (
-/turf/open/floor/catwalk_floor,
-/area/space/station_ruins)
 "cgL" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -90895,7 +90892,7 @@ pNo
 pNo
 pNo
 pNo
-cgJ
+aaa
 pNo
 pNo
 pNo
