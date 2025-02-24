@@ -27074,6 +27074,12 @@
 	},
 /turf/open/floor/catwalk_floor,
 /area/maintenance/port/aft)
+"cgJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engineering/atmos)
 "cgL" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -39734,6 +39740,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/visible{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/engineering/atmos)
 "cIk" = (
@@ -41032,9 +41041,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/visible{
-	dir = 5
 	},
 /turf/open/floor/plasteel,
 /area/engineering/atmos)
@@ -52440,6 +52446,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/visible{
+	dir = 10
+	},
 /turf/open/floor/plasteel,
 /area/engineering/atmos)
 "fFY" = (
@@ -52690,8 +52699,9 @@
 /turf/open/floor/plasteel,
 /area/engineering/atmos)
 "fNh" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 6
+/obj/machinery/atmospherics/components/binary/pump/on{
+	dir = 1;
+	name = "Air to External Air Ports"
 	},
 /turf/open/floor/plasteel,
 /area/engineering/atmos)
@@ -53679,9 +53689,6 @@
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solars/port/fore)
 "grX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/visible{
-	dir = 5
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 10
 	},
@@ -60394,6 +60401,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engineering/main)
+"jUM" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/turf/open/floor/plating,
+/area/engineering/atmos)
 "jVR" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -63663,6 +63678,9 @@
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
 	name = "Port to External"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/engineering/atmos)
@@ -73696,9 +73714,6 @@
 	name = "Distribution Loop";
 	req_access_txt = "24"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/engineering/atmos)
 "rdv" = (
@@ -78157,9 +78172,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/visible{
-	dir = 10
-	},
 /turf/open/floor/plasteel,
 /area/engineering/atmos)
 "tFJ" = (
@@ -78474,11 +78486,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/patients_rooms/room_a)
 "tNF" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 8;
-	name = "Air to External Air Ports"
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel,
 /area/engineering/atmos)
 "tNG" = (
@@ -82154,6 +82164,9 @@
 /area/hallway/secondary/entry)
 "vRu" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/heater,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 9
+	},
 /turf/open/floor/plasteel,
 /area/engineering/atmos)
 "vRz" = (
@@ -82367,7 +82380,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
-	dir = 10
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/engineering/atmos)
@@ -129360,7 +129373,7 @@ sKv
 fFR
 fNh
 tNF
-cRg
+cgJ
 nwU
 lOv
 tyC
@@ -129872,8 +129885,8 @@ maO
 ooB
 oVH
 ldI
-cRg
-uED
+ooB
+jUM
 vRu
 kJQ
 wqG
